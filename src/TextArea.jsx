@@ -1,13 +1,13 @@
 import { useState } from "react";
 import Warning from "./Warning";
 
-export default function TextArea() {
-  const [text,setText] = useState("");
+export default function TextArea({text,setText}) {
   const [warningText,setWarningText] = useState("");
   return (
-    <>
-    <textarea className="textarea" value={text} onChange={(e)=>{
+    <div className="textarea">
+    <textarea  value={text} onChange={(e)=>{
         const newText = e.target.value;
+        
         if(newText.includes('<script>')){
           setWarningText("Scripts are not allowed");
           return;
@@ -21,6 +21,6 @@ export default function TextArea() {
 
     }} placeholder="Enter text here" spellCheck="false"/>
       <Warning warningText={warningText}/>
-      </>
+      </div>
   )
 }
